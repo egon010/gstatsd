@@ -36,6 +36,9 @@ class StatsClient(object):
         for key in keys:
             self._send('%s:%d|c' % (key, round(magnitude)), sample_rate)
 
+    def gauge(self, key, value=0):
+        self._send('%s:%d|g' % (key,value))
+
     def _send(self, data, sample_rate=1):
         packet = None
         if sample_rate < 1.0:

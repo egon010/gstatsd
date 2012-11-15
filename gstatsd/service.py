@@ -1,5 +1,4 @@
-# standard
-import cStringIO
+# standard import cStringIO
 import optparse
 import os
 import resource
@@ -47,7 +46,7 @@ class Stats(object):
     def __init__(self):
         self.timers = defaultdict(list)
         self.counts = defaultdict(float)
-        self.gauges = defaultdict(list)
+        self.gauges = defaultdict()
         self.percent = PERCENT
         self.interval = INTERVAL
 
@@ -209,7 +208,7 @@ class StatsDaemon(object):
 
             # gauges with arbitrary values
             elif stype == 'g':
-                stats.gauges[key].append(float(value if value else 0))
+                stats.gauges[key] = value
 
 
 def main():
