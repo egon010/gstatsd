@@ -79,6 +79,10 @@ class StatsTest(unittest.TestCase):
         count.add(5)
         self.assertEquals(self._cli.packets[-1], ('foo:5|c', 1))
 
+    def test_gauge(self):
+        gauge = self._stat.get_gauge('foo',5)
+        self.assertEquals(self._cli.packets[-1], ('foo:5|g', 1))
+
 
 def main():
     unittest.main()
